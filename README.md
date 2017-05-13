@@ -1,2 +1,2 @@
 # leetcode
-leet学习历程
+leetcode学习历程
