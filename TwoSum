@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> res;  
+    multimap<int, int> numsMap;  
+    multimap<int, int>::iterator iter1;  
+    int max = nums.size();  
+  
+    //数组转进map，用下标做键  
+    for (int i = 0; i < max; i++)  
+    {  
+        numsMap.insert(pair<int, int>(nums[i], i + 1));  
+    }  
+  
+    for (iter1 = numsMap.begin(); iter1 != numsMap.end(); iter1++)
+    {  
+  
+        //map.(target-a)存在，则存在a + b = target  
+        //且不是本身。  
+        if ((numsMap.end() != numsMap.find(target - iter1->first)) &&  ((numsMap.find(target - iter1->first))->second)!= iter1->second)//第一个下标，即a  //第二个下标，即(target-a)
+        {  
+            //将下标存到vector，并排序  
+            res.push_back((iter1->second)-1);  //注意下标
+            res.push_back((((numsMap.find(target - iter1->first))->second))-1);  
+            sort(res.begin(), res.end());  
+            break;  
+        }  
+    }
+    return res; 
+    }
+};
